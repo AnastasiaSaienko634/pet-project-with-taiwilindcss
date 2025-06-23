@@ -1,0 +1,26 @@
+.buttonContact {
+  display: flex;
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid rgb(142, 183, 224);
+  background-color: rgb(144, 199, 255);
+}
+
+.buttonContact:hover {
+  background-color: rgb(73, 163, 253);
+}
+
+.iconPhone {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  fill: rgb(47, 145, 243);
+  margin-top: 10px;
+}
+
+.iconPerson {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  fill: rgb(47, 145, 243);
+}
