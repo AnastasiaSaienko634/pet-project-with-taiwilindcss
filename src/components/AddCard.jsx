@@ -16,7 +16,7 @@ export function AddCard({ setIsOpen }) {
 
   return (
     <div className="fixed pb-99  bg-black/20  inset-0 flex items-center justify-center bg-opacity-30 z-50">
-      <div className=" px-1 bg-white rounded-2xl shadow-lg justify-center  pb-10 ">
+      <div className=" px-1 mt-60 bg-white rounded-2xl shadow-lg justify-center  pb-10 ">
         <button
           onClick={handleClick}
           className="block text-red-600 cursor-pointer h-5 w-5 mt-4 ml-auto pr-10 pt-4 "
