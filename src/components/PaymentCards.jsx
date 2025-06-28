@@ -21,8 +21,8 @@ export function PaymentCards() {
         </button>
       </div>
       <div className="px-6 flex">
-        <img className="w-15 h-10 rounded-lg" src={image} />
-        <h2 className="flex px-2 gap-x-2 items-center flex-wrap w-45 ">
+        <img className="w-[60px] h-10 rounded-lg" src={image} alt="Visa" />
+        <h2 className="flex px-5 gap-x-2 items-center flex-wrap w-[200px] ">
           Domen Visa
           <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 rounded-3xl">
             Primary
@@ -31,9 +31,9 @@ export function PaymentCards() {
         </h2>
         <p></p>
       </div>
-      <div className="px-6 flex py-2">
-        <img className="w-15 h-10 rounded-lg" src={image2} />
-        <h2 className="flex px-2 gap-x-2 items-center flex-wrap ">
+      <div className="px-6 flex py-6">
+        <img className="w-15 h-10 rounded-lg" src={image2} alt="Master Card" />
+        <h2 className="flex px-5 gap-x-2 items-center flex-wrap ">
           Domen MC
           <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 rounded-3xl">
             Primary
@@ -41,10 +41,10 @@ export function PaymentCards() {
           <span className="text-sm font-bold text-gray-500">****93271</span>
         </h2>
       </div>
-      <p className="flex gap-2 items-center mx-6  my-5 py-2 px-2 text-sm bg-green-200 rounded-lg animate-pulse duration-1000">
+      <p className="flex gap-2 items-center mx-6   py-3 px-2 text-sm bg-green-200 rounded-lg animate-pulse duration-1000">
         <MdOutlineSecurity className="flex w-15 h-13 fill-green-700" />
-        We're fully compiliant with the payment card idustry data security
-        standarts.
+        We're fully compliant with the Payment Card Industry Data Security
+        Standards.
       </p>
 
       {isOpen && <AddCard isOpen={isOpen} setIsOpen={setIsOpen} />}

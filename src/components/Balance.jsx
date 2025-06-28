@@ -11,12 +11,13 @@ export function Balance() {
             <PiCoins className="fill-amber-400 w-8 h-8 " />
             $10.000.000
           </h3>
-          <button className="text-white items-center mx-auto flex justify-center py-2 w-55 h-11 bg-blue-600 rounded-2xl  ease-in-out transition-colors hover:bg-blue-900 hover:scale-105">
-            <NavLink className="flex items-center" to="/credits">
-              <GoPlus className="fill-white w-5 h-5 justify-center mx-2" /> Buy
-              credits
-            </NavLink>
-          </button>
+          <NavLink
+            className="flex items-center text-white cursor-pointer  mx-auto justify-center py-2 w-55 h-11 bg-blue-600 rounded-2xl  ease-in-out hover:bg-blue-900 hover:scale-105"
+            to="/credits"
+          >
+            <GoPlus className="fill-white w-5 h-5 justify-center mx-2" /> Buy
+            credits
+          </NavLink>
         </div>
       </div>
     </>
