@@ -3,11 +3,15 @@ import { PaymentCards } from "./PaymentCards";
 
 export function ChooseAmount() {
   const [custom, setCustom] = useState(false);
+  const [customValue, setCustomValue] = useState("");
   const handleClick = () => {
     setCustom(true);
   };
 
   const handleAcceptClick = () => {
+    if (!customValue) {
+      return;
+    }
     setCustom(false);
   };
   return (
@@ -57,8 +61,13 @@ export function ChooseAmount() {
                 placeholder="Enter the amount..."
                 className="border border-blue-200 w-40 h-10  mx-7 text-sm text-center rounded-2xl text-blue-400 outline-0 focus:border-blue-500"
                 inputmode="numeric"
+                name="custom"
+                value={customValue}
+                onChange={(e) => setCustomValue(e.target.value)}
+                required
               />
               <button
+                type="submit"
                 onClick={handleAcceptClick}
                 className="cursor-pointer text-blue-400 font-medium transition-transform duration-150 border border-gray-200  w-20 h-10 bg-white rounded-2xl hover:border-blue-200 hover:text-blue-600 hover:bg-blue-200 hover:scale-105 focus:text-blue-400 focus:border-blue-400 focus:bg-blue-200"
               >

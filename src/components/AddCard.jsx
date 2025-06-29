@@ -11,28 +11,29 @@ export function AddCard({ setIsOpen }) {
     street: "",
     cardNumber: "",
     cvc: "",
+    expirationdate: "",
   };
 
   const addCardShema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
+      .matches(/^[A-Za-z]+$/, "Name must contain only letters")
       .required("Required"),
     country: Yup.string()
+      .oneOf(["Germany", "USA", "Ukraine, Bolgaria"], "Invalid country")
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
     street: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
+      .min(3, "Street Name is too Short!")
+      .max(50, "Street Name is too Long!")
       .required("Required"),
     cardNumber: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
+      .matches(/^\d{16}$/, "Card number must be 16 digits")
       .required("Required"),
     cvc: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
+      .matches(/^\d{3,4}$/, "CVC must be 3 or 4 digits")
       .required("Required"),
   });
 
@@ -64,7 +65,7 @@ export function AddCard({ setIsOpen }) {
           <IoMdClose className="w-6 h-6 " />
         </button>
 
-        <p className="mx-4 mb-3 mt-1">Personal Details</p>
+        <p className="mx-4 mb-3 mt-1 font-bold">Personal Details</p>
         <Formik
           initialValues={initialValues}
           validationSchema={addCardShema}
@@ -72,59 +73,89 @@ export function AddCard({ setIsOpen }) {
         >
           {({ errors, touched }) => (
             <Form className="block  ">
-              <Field
-                className=" border block p-2 w-72  mx-4 rounded-sm text-sm border-gray-300"
-                name="name"
-                type="text"
-                placeholder="Full name"
-              />
-              {errors.name && touched.name ? (
-                <div className="pl-5 pt-1 text-red-500">{errors.name}</div>
-              ) : null}
-              <Field
-                className="border block mx-4 mt-2 p-2 w-72 rounded-sm text-sm  border-gray-300"
-                name="country"
-                type="text"
-                placeholder="Your Country"
-              />
-              {errors.country && touched.country ? (
-                <div className="pl-5 pt-1 text-red-500">{errors.country}</div>
-              ) : null}
-              <Field
-                className="border block mx-4 mt-2 p-2 w-72 rounded-sm text-sm  border-gray-300"
-                name="street"
-                type="text"
-                placeholder="Street adress"
-              />
-              {errors.street && touched.street ? (
-                <div className="pl-5 pt-1 text-red-500">{errors.street}</div>
-              ) : null}
-              <p className="mx-4 mb-3 mt-4">Card details</p>
-              <Field
-                className="border block mx-4 mt-2 p-2 w-72 rounded-sm text-sm  border-gray-300"
-                name="cardNumber"
-                type="text"
-                placeholder="Card Number"
-                inputmode="numeric"
-              />
-              {errors.cardNumber && touched.cardNumber ? (
-                <div className="pl-5 pt-1 text-red-500">
-                  {errors.cardNumber}
-                </div>
-              ) : null}
-              <Field
-                className="border flex mx-4 mt-2 p-2 w-20 text-center rounded-sm text-sm  border-gray-300"
-                name="cvc"
-                type="text"
-                placeholder="cvc"
-                inputmode="numeric"
-              />
-              {errors.cvc && touched.cvc ? (
-                <div className="pl-5 pt-1 text-red-500">{errors.cvc}</div>
-              ) : null}
+              <label className="mx-4 " htmlFor="name">
+                Full Name
+                <Field
+                  id="name"
+                  className="border block p-2 w-72  mx-4 rounded-sm text-sm border-gray-300"
+                  name="name"
+                  type="text"
+                  placeholder="Your full name"
+                />
+                {errors.name && touched.name ? (
+                  <div className="pl-5 pt-1 text-red-500">{errors.name}</div>
+                ) : null}
+              </label>
 
+              <label className="mx-1" htmlFor="country">
+                Country
+                <Field
+                  className="border block mx-4 p-2 w-72 rounded-sm text-sm  border-gray-300"
+                  name="country"
+                  type="text"
+                  placeholder="Your Country"
+                  id="country"
+                />
+                {errors.country && touched.country ? (
+                  <div className="pl-5 pt-1 text-red-500">{errors.country}</div>
+                ) : null}
+              </label>
+              <label className="mx-4" htmlFor="street">
+                Street
+                <Field
+                  className="border block mx-4  p-2 w-72 rounded-sm text-sm  border-gray-300"
+                  name="street"
+                  type="text"
+                  placeholder="Your Street adress"
+                  id="street"
+                />
+                {errors.street && touched.street ? (
+                  <div className="pl-5 pt-1 text-red-500">{errors.street}</div>
+                ) : null}
+              </label>
+              <p className="mx-4 mb-3 mt-4 font-bold">Card details</p>
+              <label className="mx-4" htmlFor="cardNumber">
+                Card Number
+                <Field
+                  className="border block mx-4  p-2 w-72 rounded-sm text-sm  border-gray-300"
+                  name="cardNumber"
+                  type="text"
+                  placeholder="Your Card Number"
+                  inputmode="numeric"
+                  id="cardNumber"
+                />
+                {errors.cardNumber && touched.cardNumber ? (
+                  <div className="pl-5 pt-1 text-red-500">
+                    {errors.cardNumber}
+                  </div>
+                ) : null}
+              </label>
+              <div className="flex ">
+                <label className="text-center mb-5" htmlFor="cvc">
+                  <Field
+                    className="border flex ml-5 mr-2 p-2 w-20 text-center rounded-sm text-sm  border-gray-300"
+                    name="cvc"
+                    type="text"
+                    placeholder="cvc"
+                    inputmode="numeric"
+                    id="cvc"
+                  />
+                  {errors.cvc && touched.cvc ? (
+                    <div className="pl-5 pt-1 text-red-500">{errors.cvc}</div>
+                  ) : null}
+                </label>
+                <label htmlFor="expirationdate">
+                  <Field
+                    className="border flex mx-2  p-2 w-20 text-center rounded-sm text-sm  border-gray-300"
+                    name="expirationdate"
+                    type="text"
+                    placeholder="MM/YY"
+                    id="expirationdate"
+                  />
+                </label>
+              </div>
               <button
-                className="cursor-pointer block px-5  mx-4 my-5 p-1 border rounded-sm border-blue-200 bg-blue-200/50 hover:border-blue-400 hover:bg-blue-400"
+                className="cursor-pointer block px-5  mx-4 my-1 p-1 border rounded-sm border-blue-200 bg-blue-200/50 hover:border-blue-400 hover:bg-blue-400"
                 type="submit"
               >
                 Submit
